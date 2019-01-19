@@ -62,6 +62,6 @@ public class Program {
 		
 		System.out.println("Informações do banco de dados após alteração: ");
 		System.out.println(sellerDao.findById(12));
-		
+
 	}
 }
