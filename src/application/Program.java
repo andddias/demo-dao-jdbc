@@ -53,5 +53,15 @@ public class Program {
 		sellerDao.update(sellerUpdate);
 		System.out.println("Informações do banco de dados após alteração: ");
 		System.out.println(sellerDao.findById(10));
+		
+		System.out.println("\n===== TEST 6: seller delete =====");	
+		System.out.println("Informações do banco de dados antes da alteração: ");
+		System.out.println(sellerDao.findById(12));
+		
+		sellerDao.deleteById(12);
+		
+		System.out.println("Informações do banco de dados após alteração: ");
+		System.out.println(sellerDao.findById(12));
+		
 	}
 }

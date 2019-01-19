@@ -103,8 +103,33 @@ public class SellerDaoJDBC implements SellerDao{
 
 	@Override
 	public void deleteById(Integer id) {
-		// TODO Auto-generated method stub
 		
+		PreparedStatement st = null;
+
+		try {
+			conn.setAutoCommit(false);
+			
+			st = conn.prepareStatement(
+					"DELETE FROM seller "
+					+ "WHERE Id = ?");
+			
+			st.setInt(1, id);			
+			
+			st.executeUpdate();
+			
+			conn.commit();
+		}
+		catch (SQLException e) {
+			try {
+				conn.rollback();
+				throw new DbException(e.getMessage());
+			} catch (SQLException e1) {
+				throw new DbException("Error trying to rollback! Caused by: " + e1.getMessage());
+			}			
+		}
+		finally {
+			DB.closeStatement(st);
+		}		
 	}
 
 	@Override
