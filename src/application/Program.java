@@ -33,7 +33,25 @@ public class Program {
 		
 		System.out.println("\n===== TEST 4: seller insert =====");
 		Seller newSeller = new Seller(null, "André Luiz", "and.ddias@gmail.com", sdf.parse("27/06/1983"), 3007.0, dep);
-		sellerDao.insert(newSeller);
+		
+		//Comentado para parar de inserir informações no banco de dados
+		//sellerDao.insert(newSeller);
 		System.out.println("Inserted! new id = " + newSeller.getId());
+		
+		System.out.println("\n===== TEST 5: seller update =====");	
+		System.out.println("Informações do banco de dados antes da alteração: ");
+		
+		Seller sellerUpdate = sellerDao.findById(10);
+		System.out.println(sellerUpdate);
+		
+		//Update a partir de uma nova instacia de Seller		
+		//sellerDao.update(new Seller(10, "André Luiz Alves Dias", "and.ddias@gmail.com", sdf.parse("27/06/1983"), 12345.99, dep));;
+		
+		//update de um objeto já instanciado de Seller
+		sellerUpdate.setName("André Dias");
+		sellerUpdate.setBaseSalary(25638.65);
+		sellerDao.update(sellerUpdate);
+		System.out.println("Informações do banco de dados após alteração: ");
+		System.out.println(sellerDao.findById(10));
 	}
 }
